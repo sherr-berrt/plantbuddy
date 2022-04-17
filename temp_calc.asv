@@ -80,15 +80,15 @@ end
 
 %% Making table
 
-% Initialize table
-% Can only read file line by line so no preallocating :(
+   
+tline = fgetl(plant_opened);
+
 titles = {'name' 'max_temp' 'min_temp'};
+
+% Initialize table
 init_table = {"hello :)", 0, 0};
 plant_temps = array2table(init_table);
 plant_temps.Properties.VariableNames = titles;
-
-% Read first line
-tline = fgetl(plant_opened);
 
 % While still reading file
 while tline ~= -1
@@ -121,27 +121,15 @@ while tline ~= -1
             min_temp_plant = 80;                
         end                                                        
     end       
-    
-    % Modify table
-    this_row = {each_line{1}, (max_temp_plant + temp_range) , (min_temp_plant - temp_range)};
-    this_row_table = array2table(this_row);
+
+    this_row = {each_line{1}, max_temp_plant , min_temp_plant};
+    this_row_table = array2table(this_row)
     this_row_table.Properties.VariableNames = titles;
-    plant_temps = vertcat(plant_temps, this_row_table);
+    plant_temps = vertcat(plant_temps, this_row_table}, 'VariableNames', titles)
       
-    % Prepare for next iteration
-    tline = fgetl(plant_opened);
+   tline = fgetl(plant_opened);
 end
 
-disp('Plant by state done')
-
-%% Cleanup
-
-% Export
-plant_temps;
-conditions;
-
-
-
-% Close files
 fclose('all');
-disp("Cleanup done")
+
+disp('Plant by state done')
