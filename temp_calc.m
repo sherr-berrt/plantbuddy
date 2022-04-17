@@ -26,10 +26,9 @@ min_temp = temps_abbrev{:,2} - temp_range;
 max_temp = temps_abbrev{:,2} + temp_range;
 avg_temp = temps_abbrev{:,2};
 
-% Placeholders for pressure
-press_range = 50;
-max_press = 99221 + press_range;
-min_press = 99221 - press_range;
+% Average pressure ranges
+max_press = 101320; % Sea level
+min_press = 99221 - (101320 - 99221);
 
 % Humidity for avg houseplants
 max_humid = 75;% * ones(50,1);
@@ -136,11 +135,15 @@ disp('Plant by state done')
 
 %% Cleanup
 
+% Remove initial line
+plant_temps([1],:) = [];
+
 % Export
 plant_temps;
 conditions;
 
-
+writetable(plant_temps, strcat(myDir, '\outputs\plant_temp_ranges.csv'))
+writetable(conditions, strcat(myDir, '\outputs\conditions.csv'))
 
 % Close files
 fclose('all');
