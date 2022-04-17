@@ -20,3 +20,11 @@ App to monitor and advise about plant growth
 1. Run `temp_calc.m` in Matlab
 2. This program will take a little bit to run
 3. Produces two files - `conditions.csv` and `plant_temp_ranges.csv` in `outputs` directory
+
+
+## Run messaging system
+
+1. Open `Monitor_loop.ipynb` in Jupyter Notebook
+2. On the dashboard of `twilio.com`, look for `Auth token`
+3. Copy the `Auth token` into the `Twilio` cell in `Monitor_loop.ipynb`
+4. Run the cells of `Monitor_loop.ipynb`
