@@ -1,5 +1,5 @@
 # plantbuddy
-App to monitor and advise about plant growth
+App to monitor and advise about plant growth. The program reads plant care data, uses an arduino to monitor the environment, and texts you updates about the plant's well being. We also have a mockup of an interface.
 
 
 ## Gather data from Arduino
